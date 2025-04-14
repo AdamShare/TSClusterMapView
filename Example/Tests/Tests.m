@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Adam Share. All rights reserved.
 //
 
+@import XCTest;
+#import "TSClusterMapView.h"
 #import "TSStreetLightAnnotation.h"
-#import <TSClusterMapView/TSClusterMapView.h>
 
 @interface TSClusterMapView (Tree)
 
@@ -15,33 +16,33 @@
 
 @end
 
-SpecBegin(InitialSpecs)
 
-describe(@"KD Tree Build", ^{
-    
+@interface KDTreeBuildTests: XCTestCase
+@end
+
+@implementation KDTreeBuildTests
+
+- (void)testClusteringStreetLights {
     TSClusterMapView *mapView = [[TSClusterMapView alloc] initWithFrame:CGRectMake(0, 0, 200, 500)];
-    
-//    it(@"", ^{
-//    });
-    
-    it(@"Cluster street lights", ^AsyncBlock {
-        
-        [[NSOperationQueue new] addOperationWithBlock:^{
-            NSData * JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CDStreetlights" ofType:@"json"]];
-            
-            NSMutableSet *mutableSet = [[NSMutableSet alloc] init];
-            for (NSDictionary * annotationDictionary in [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:NULL]) {
-                TSStreetLightAnnotation * annotation = [[TSStreetLightAnnotation alloc] initWithDictionary:annotationDictionary];
-                [mutableSet addObject:annotation];
-            }
-            
-            [mapView createKDTreeAndCluster:mutableSet completion:^(ADMapCluster *mapCluster) {
-                if (mapCluster) {
-                    done();
-                }
-            }];
-        }];
-    });
-});
 
-SpecEnd
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Creating cluster finishes"];
+
+    [[NSOperationQueue new] addOperationWithBlock:^{
+        NSData * JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CDStreetlights" ofType:@"json"]];
+
+        NSMutableSet *mutableSet = [[NSMutableSet alloc] init];
+        for (NSDictionary * annotationDictionary in [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:NULL]) {
+            TSStreetLightAnnotation * annotation = [[TSStreetLightAnnotation alloc] initWithDictionary:annotationDictionary];
+            [mutableSet addObject:annotation];
+        }
+
+        [mapView createKDTreeAndCluster:mutableSet completion:^(ADMapCluster *mapCluster) {
+            if (mapCluster) {
+                [expectation fulfill];
+            }
+        }];
+    }];
+
+    [self waitForExpectations:@[expectation] timeout:1];
+}
+@end
