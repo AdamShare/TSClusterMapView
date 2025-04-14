@@ -7,7 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import <DOCore/TSPlatformCompatibility.h>
+#import "TSPlatformCompatibility.h"
 
 /**
  * Do not subclass. This MKAnnotationView is a wrapper to keep the annotation view static during clustering.

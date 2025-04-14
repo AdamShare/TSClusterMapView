@@ -17,7 +17,7 @@
     options.duration = 0.3;
     options.springDamping = 0.7;
     options.springVelocity = 0.5;
-    options.viewAnimationOptions = UIViewAnimationOptionCurveEaseIn;
+    options.viewAnimationOptions = TSUIViewAnimationOptionCurveEaseIn;
     
     return options;
 }

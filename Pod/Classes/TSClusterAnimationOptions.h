@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <DOCore/TSPlatformCompatibility.h>
+#import "TSPlatformCompatibility.h"
 #if TS_TARGET_IOS
   #import <UIKit/UIKit.h>
 #endif
@@ -34,9 +34,9 @@
 @property (nonatomic, assign) float springVelocity;
 
  /**
- * A mask of options indicating how you want to perform the animations. For a list of valid constants, see UIViewAnimationOptions.
+ * A mask of options indicating how you want to perform the animations. For a list of valid constants, see TSUIViewAnimationOptions.
  */
-@property (nonatomic, assign) UIViewAnimationOptions viewAnimationOptions;
+@property (nonatomic, assign) TSUIViewAnimationOptions viewAnimationOptions;
 
 
 /**

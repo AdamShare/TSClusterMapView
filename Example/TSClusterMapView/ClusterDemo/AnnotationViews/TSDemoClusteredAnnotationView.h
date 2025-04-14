@@ -7,7 +7,7 @@
 //
 
 
-#import <TSClusterMapView/TSRefreshedAnnotationView.h>
+@import TSClusterMapView;
 
 @interface TSDemoClusteredAnnotationView : TSRefreshedAnnotationView
 

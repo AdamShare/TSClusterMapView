@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import <DOCore/ADMapPointAnnotation.h>
+#import "ADMapPointAnnotation.h"
 
 @class TSClusterMapView;
 
