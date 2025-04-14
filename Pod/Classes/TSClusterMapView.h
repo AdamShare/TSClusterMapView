@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import <DOCore/ADMapCluster.h>
-#import <DOCore/ADClusterAnnotation.h>
-#import <DOCore/TSClusterAnnotationView.h>
-#import <DOCore/TSClusterAnimationOptions.h>
-#import <DOCore/TSPlatformCompatibility.h>
+#import "ADMapCluster.h"
+#import "ADClusterAnnotation.h"
+#import "TSClusterAnnotationView.h"
+#import "TSClusterAnimationOptions.h"
+#import "TSPlatformCompatibility.h"
+#import "TSRefreshedAnnotationView.h"
 
 // Progress of cluster tree notification
 extern NSString * const KDTreeClusteringProgress;
 
 @class TSClusterMapView;
-@protocol TSClusterMapViewDelegate <MKMapViewDelegate, UIGestureRecognizerDelegate>
+@protocol TSClusterMapViewDelegate <MKMapViewDelegate, TSUIGestureRecognizerDelegate>
 @optional
 
 /*!
@@ -101,7 +102,7 @@ typedef NS_ENUM(NSInteger, ADClusterBufferSize) {
     ADClusterBufferLarge = 8
 };
 
-@interface TSClusterMapView : MKMapView <MKMapViewDelegate, UIGestureRecognizerDelegate, TSClusterMapViewDelegate>
+@interface TSClusterMapView : MKMapView <MKMapViewDelegate, TSUIGestureRecognizerDelegate, TSClusterMapViewDelegate>
 
 /*!
  * @discussion Adds an annotation to the map and clusters if needed (threadsafe). Only rebuilds entire cluster tree if there are less than 1000 clustered annotations or the annotation coordinate is an outlier from current clustered data set.
@@ -228,7 +229,7 @@ typedef NS_ENUM(NSInteger, ADClusterBufferSize) {
 
 @property (strong, nonatomic, readonly) NSMutableSet <ADClusterAnnotation *> *clusterAnnotationsPool;
 
-@property (strong, nonatomic, readonly) UIPanGestureRecognizer *panRecognizer;
+@property (strong, nonatomic, readonly) TSUIPanGestureRecognizer *panRecognizer;
 
 
 @end

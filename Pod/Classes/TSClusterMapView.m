@@ -77,7 +77,7 @@ NSString * const KDTreeClusteringProgress = @"KDTreeClusteringProgress";
     }
     
     if (monitorMapPan) {
-        _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+        _panRecognizer = [[TSUIPanGestureRecognizer alloc] initWithTarget:self
                                                                  action:@selector(didPanMap:)];
         [_panRecognizer setDelegate:self];
         [self addGestureRecognizer:_panRecognizer];
@@ -411,20 +411,20 @@ NSString * const KDTreeClusteringProgress = @"KDTreeClusteringProgress";
 }
 
 
-#pragma mark - UIGestureRecognizerDelegate methods
+#pragma mark - TSUIGestureRecognizerDelegate methods
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+- (BOOL)gestureRecognizer:(TSUIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(TSUIGestureRecognizer *)otherGestureRecognizer {
     
     return _monitorMapPan;
 }
 
-- (void)didPanMap:(UIGestureRecognizer*)gestureRecognizer {
+- (void)didPanMap:(TSUIGestureRecognizer*)gestureRecognizer {
     
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan){
+    if (gestureRecognizer.state == TSUIGestureRecognizerStateBegan){
         [self userWillPanMapView:self];
     }
     
-    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    if (gestureRecognizer.state == TSUIGestureRecognizerStateEnded) {
         [self userDidPanMapView:self];
     }
 }
@@ -865,7 +865,7 @@ NSString * const KDTreeClusteringProgress = @"KDTreeClusteringProgress";
             [self deselectAnnotation:view.annotation animated:NO];
             
             MKMapRect zoomTo = ((ADClusterAnnotation *)view.annotation).cluster.mapRect;
-            zoomTo = [self mapRectThatFits:zoomTo edgePadding:UIEdgeInsetsMake(view.frame.size.height, view.frame.size.width, view.frame.size.height, view.frame.size.width)];
+            zoomTo = [self mapRectThatFits:zoomTo edgePadding:TSUIEdgeInsetsMake(view.frame.size.height, view.frame.size.width, view.frame.size.height, view.frame.size.width)];
             
             if (MKMapRectSizeIsGreaterThanOrEqual(zoomTo, self.visibleMapRect)) {
                 zoomTo = MKMapRectInset(zoomTo, zoomTo.size.width/4, zoomTo.size.width/4);
@@ -894,7 +894,7 @@ NSString * const KDTreeClusteringProgress = @"KDTreeClusteringProgress";
     }
 }
 
-- (TSClusterAnnotationView *)clusterAnnotationForSubview:(UIView *)view {
+- (TSClusterAnnotationView *)clusterAnnotationForSubview:(TSUIView *)view {
     
     if (!view) {
         return nil;

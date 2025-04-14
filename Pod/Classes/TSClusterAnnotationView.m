@@ -12,12 +12,12 @@
 
 #import <TargetConditionals.h>
 #if !TARGET_OS_IOS
-  #define UIView NSView // For our purposes, close enough
+  #define TSUIView NSView // For our purposes, close enough
 #endif
 
 @interface TSClusterAnnotationView ()
 
-@property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) TSUIView *contentView;
 
 @end
 
@@ -28,7 +28,7 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        self.contentView = [[UIView alloc] initWithFrame:contentView.bounds];
+        self.contentView = [[TSUIView alloc] initWithFrame:contentView.bounds];
         [self addSubview:self.contentView];
         [self updateWithAnnotationView:contentView];
     }

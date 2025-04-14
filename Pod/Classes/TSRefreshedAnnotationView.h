@@ -7,7 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import <DOCore/ADClusterAnnotation.h>
+#import "ADClusterAnnotation.h"
 
 /*!
  * @discussion Optional subclass to make use of the clustering animation block
