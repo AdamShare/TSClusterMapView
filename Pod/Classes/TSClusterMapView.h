@@ -14,6 +14,9 @@
 #import "TSClusterAnimationOptions.h"
 #import "TSPlatformCompatibility.h"
 #import "TSRefreshedAnnotationView.h"
+#import "CLLocation+Utilities.h"
+#import "TSClusterOperation.h"
+#import "NSDictionary+MKMapRect.h"
 
 // Progress of cluster tree notification
 extern NSString * const KDTreeClusteringProgress;

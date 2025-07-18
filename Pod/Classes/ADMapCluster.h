@@ -84,7 +84,6 @@ typedef void(^KdtreeCompletionBlock)(ADMapCluster *mapCluster);
 
 /*!
  * @discussion Get a set number of children contained within a map rect
- * @param number Max number of children to be returned
  * @param mapRect The mapr ect to search within
  * @param annotationSizeRect Map rect containing the size of an annotation view at the current region
  * @param overlap If YES annotation view size will not be accounted and clusters will overlap
